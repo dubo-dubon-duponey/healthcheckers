@@ -9,16 +9,16 @@ import (
 )
 
 func main() {
-  uri := fmt.Sprintf("%s", os.Getenv("HEALTHCHECK_URL"))
-  if uri == "" {
-    os.Exit(1)
-  }
+	uri := fmt.Sprintf("%s", os.Getenv("HEALTHCHECK_URL"))
+	if uri == "" {
+		os.Exit(1)
+	}
 
 	contype := fmt.Sprintf("%s", os.Getenv("HEALTHCHECK_TYPE"))
 	if contype != "tcp" {
 		contype = "udp"
 	}
-  question := fmt.Sprintf("%s", os.Getenv("HEALTHCHECK_QUESTION"))
+	question := fmt.Sprintf("%s", os.Getenv("HEALTHCHECK_QUESTION"))
 
 	tcpResolver := net.Resolver{
 		PreferGo: true,

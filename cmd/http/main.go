@@ -23,10 +23,8 @@ func main() {
 	}
 	defer res.Body.Close()
 
-	if res.StatusCode != 200 {
-		os.Exit(1)
-	}
-
 	body, _ := ioutil.ReadAll(res.Body)
+	fmt.Println(res.StatusCode)
+	fmt.Println()
 	fmt.Println(string(body))
 }
