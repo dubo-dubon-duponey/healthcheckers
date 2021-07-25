@@ -7,6 +7,7 @@ import (
 	"bytes"
 	"crypto/md5"
 	"encoding/hex"
+	"flag"
 	"fmt"
 	"io"
 	"net"
@@ -248,7 +249,16 @@ func (self *Client) ReadResponse() (res Response, err error) {
 	return
 }
 
+var (
+	version = flag.Bool("version", false,"print version")
+)
+
 func main() {
+	flag.Parse()
+	if *version != false {
+		fmt.Println("unversioned")
+		os.Exit(0)
+	}
 	uri := fmt.Sprintf("%s", os.Getenv("HEALTHCHECK_URL"))
 	if uri == "" {
 		os.Exit(1)

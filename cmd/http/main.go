@@ -1,13 +1,24 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"io/ioutil"
 	"net/http"
 	"os"
 )
 
+var (
+	version = flag.Bool("version", false,"print version")
+)
+
 func main() {
+	flag.Parse()
+	if *version != false {
+		fmt.Println("unversioned")
+		os.Exit(0)
+	}
+
 	uri := fmt.Sprintf("%s", os.Getenv("HEALTHCHECK_URL"))
 	if uri == "" {
 		os.Exit(1)
